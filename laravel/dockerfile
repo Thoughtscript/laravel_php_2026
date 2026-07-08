@@ -1,0 +1,21 @@
+FROM php:8.5.8-alpine3.23
+
+RUN echo "Creating working dir and copying files"
+RUN mkdir /app
+COPY . .
+WORKDIR /app/laravel/example-app
+
+RUN apk update && apk upgrade
+RUN apk add --no-cache nodejs=24.17.0-r0
+RUN node -v
+RUN apk add --no-cache npm=11.11.0-r0
+RUN npm -v
+
+COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/bin/
+RUN install-php-extensions pdo_mysql gd zip redis pcntl
+RUN apk update
+
+COPY --from=composer:2.8 /usr/bin/composer /usr/bin/composer
+RUN composer --version
+
+CMD ["sh", "-c", "sleep 15 && npm install && npm run build && composer run dev"]
