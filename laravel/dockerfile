@@ -12,6 +12,10 @@ RUN node -v
 RUN apk add --no-cache npm=11.11.0-r0
 RUN npm -v
 
+RUN apk add redis
+COPY predis.redis.conf /etc/redis.conf
+RUN redis-server --version
+
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/bin/
 RUN install-php-extensions pdo_mysql gd zip redis pcntl
 RUN apk update

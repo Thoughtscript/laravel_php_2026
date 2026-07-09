@@ -36,7 +36,9 @@ API Endpoints:
 1. http://localhost:8000/api/examples/5
 1. `curl -X DELETE http://localhost:8000/api/examples/5`
 1. `curl -X POST http://localhost:8000/api/examples -H "Accept: application/json" -H "Content-Type: application/json" -d '{"name": "A B", "note": "abcdefg"}'`
-1. `curl -X PUT http://localhost:8000/api/examples/17 -H "Accept: application/json" -H "Content-Type: application/json" -d '{"name": "A B", "note": "abcdefg"}'`
+1. `curl -X PUT http://localhost:8000/api/examples/17 -H "Accept: application/json" -H "Content-Type: application/json" -d '{"name": "A B C", "note": "abcdefghi"}'`
+1. http://localhost:8000/api/health
+1. http://localhost:8000/api/examples/cached
 
 ### Notes
 
@@ -72,6 +74,8 @@ Additional commands to run from the **Interactive Terminal**:
 php artisan test
 # Launch Vite dev server
 npm run dev
+# Test redis
+redis-cli ping
 ```
 
 Create Models, Controllers, etc.:
@@ -102,8 +106,18 @@ Additional notes:
 1. `artisan` is akin to `rake` or `pymanage`.
 1. This attmpts to use a Mounted Volume for hot-reloading within the Container.
     * Align the [WORKDIR](./laravel/dockerfile) and [volumess](./docker-compose.yml).
+1. Avoid N+1:
+    * `$books = Book::with('author')->get();` not `$books = Book::all();`
 1. Rate Limiting
-    * TODO
+    * Would be done through AWS WAF out in front (resources are allocated on the Controllers using Laravel).
+1. Concurrency vs. Processes
+    * Former to run concurrent Closures using background hidden PHP Processes.
+    * Latter, to execute Shell and other Commands outside main Process. (Less flexible.)
+    * Apparently, no maximum Worker cap on these.
+    * For external API calls, one can batch: `Http::pool` with a Worker pool.
+1. Caching through `predis`.
+    * `redis` must be installed and is done so locally here (rather than in its own Container).
+    * Apparently: `protected-mode no` must be set for no passwords.
 
 ## Resources and Links
 
@@ -116,3 +130,5 @@ Additional notes:
 1. https://github.com/FakerPHP/Faker
 1. https://laravel.com/docs/13.x/processes
 1. https://laravel.com/docs/13.x/concurrency
+1. https://oneuptime.com/blog/post/2026-01-21-redis-laravel-integration/view
+1. https://laravel.com/docs/13.x/redis

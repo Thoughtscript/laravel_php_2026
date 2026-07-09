@@ -9,6 +9,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+// Unprotected routes
 Route::get('/health', function () {
     return response()->json([
         'status' => 'healthy',
@@ -16,6 +17,5 @@ Route::get('/health', function () {
     ]);
 });
 
-// Unprotected route
+Route::get('/examples/cached', [ExampleController::class, 'custom_cached']);
 Route::apiResource('examples', ExampleController::class);
-
