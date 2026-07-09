@@ -13,6 +13,45 @@ Launch:
 docker compose up
 ```
 
+Verify DB [Migrations](./laravel/example-app/database/migrations/) and [Seeders](./laravel/example-app/database/seeders/DatabaseSeeder.php):
+```bash
+# From the interactive terminal
+mysql --user=example --password=example example
+
+SELECT * FROM example.users;
+SELECT * FROM example.examples;
+```
+
+> It's critical that `artisan serve` be bound to the `host` and `port` explicitly. I've done so [here](./laravel/example-app/composer.json).
+
+URLs:
+1. [localhost:8000](localhost:8000) (once the above are completed)
+1. [localhost:5137](localhost:5137) (this is for Vite debugging, Vue is rolled up and served on `8000`)
+
+> Create a new User to get a valid decrypted Password.
+
+API Endpoints:
+1. http://localhost:8000/api/examples
+1. http://localhost:8000/api/examples?page=2
+1. http://localhost:8000/api/examples/5
+1. `curl -X DELETE http://localhost:8000/api/examples/5`
+1. `curl -X POST http://localhost:8000/api/examples -H "Accept: application/json" -H "Content-Type: application/json" -d '{"name": "A B", "note": "abcdefg"}'`
+1. `curl -X PUT http://localhost:8000/api/examples/17 -H "Accept: application/json" -H "Content-Type: application/json" -d '{"name": "A B", "note": "abcdefg"}'`
+
+### Notes
+
+These are now automatically executed in [run.sh](./laravel/example-app/run.sh):
+
+```bash
+# Single Process
+## Local PHP Web Server
+php artisan serve
+
+# Runs full environment
+## `npm run dev` is also triggered
+composer run dev
+```
+
 ```bash
 # For dangling Containers
 docker system prune --volumes
@@ -35,33 +74,26 @@ php artisan test
 npm run dev
 ```
 
-Verify DB [Migrations](./laravel/example-app/database/migrations/) and [Seeders](./laravel/example-app/database/seeders/DatabaseSeeder.php):
+Create Models, Controllers, etc.:
 ```bash
-# From the interactive terminal
-mysql --user=example --password=example example
-
-SELECT * FROM example.users;
+# Model
+php artisan make:model Example
+# HTTP Request validation
+php artisan make:request ExampleRequest 
+# JSON serialization
+php artisan make:resource ExampleResource
+php artisan make:resource ExampleScanResource
+# REST Controller
+php artisan make:controller Api/ExampleController --api
+# Tests
+php artisan make:test ExampleApiTest
+# Factory
+php artisan make:factory ExampleFactory
+# Make migrations
+php artisan make:migration create_examples_table --create=examples
 ```
 
-> It's critical that `artisan serve` be bound to the `host` and `port` explicitly. I've done so [here](./laravel/example-app/composer.json).
-
-URLs:
-1. [localhost:8000](localhost:8000) (once the above are completed)
-1. [localhost:5137](localhost:5137) (this is for Vite debugging, Vue is rolled up and served on `8000`)
-
-> Create a new User to get a valid decrypted Password.
-
-### Notes
-
-```bash
-# Single Process
-## Local PHP Web Server
-php artisan serve
-
-# Runs full environment
-## `npm run dev` is also triggered
-composer run dev
-```
+Additional notes:
 
 1. This doesn't use NGINX as a Proxy.
     * For a barebones example that does: https://github.com/Thoughtscript/pyng_2025/tree/main/nginx
@@ -70,6 +102,8 @@ composer run dev
 1. `artisan` is akin to `rake` or `pymanage`.
 1. This attmpts to use a Mounted Volume for hot-reloading within the Container.
     * Align the [WORKDIR](./laravel/dockerfile) and [volumess](./docker-compose.yml).
+1. Rate Limiting
+    * TODO
 
 ## Resources and Links
 
@@ -77,4 +111,8 @@ composer run dev
 1. https://laravel.com/docs/13.x/configuration
 1. https://laravel.com/docs/13.x/seeding
 1. https://oneuptime.com/blog/post/2026-01-06-docker-hot-reloading/view
-1. https://oneuptime.com/blog/post/2026-01-26-laravel-rest-api/view
+1. https://oneuptime.com/blog/post/2026-01-26-laravel-rest-api/view - this article lies!
+1. https://laravel.com/docs/13.x/eloquent-factories
+1. https://github.com/FakerPHP/Faker
+1. https://laravel.com/docs/13.x/processes
+1. https://laravel.com/docs/13.x/concurrency
