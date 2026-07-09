@@ -25,8 +25,8 @@ SELECT * FROM example.examples;
 > It's critical that `artisan serve` be bound to the `host` and `port` explicitly. I've done so [here](./laravel/example-app/composer.json).
 
 URLs:
-1. [localhost:8000](localhost:8000) (once the above are completed)
-1. [localhost:5137](localhost:5137) (this is for Vite debugging, Vue is rolled up and served on `8000`)
+1. [localhost:8000](http://localhost:8000) (once the above are completed)
+1. [localhost:5137](http://localhost:5137) (this is for Vite debugging only, Vue is rolled up and served on `8000`)
 
 > Create a new User to get a valid decrypted Password.
 
