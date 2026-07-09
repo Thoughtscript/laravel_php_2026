@@ -6,6 +6,8 @@
 
 ## Setup and Use
 
+Rename [.env.bak](./laravel/example-app/.env.bak) to .env within the same directory.
+
 Launch:
 ```bash
 docker compose up
@@ -20,8 +22,16 @@ Migrate and Seed database:
 ```bash
 # From the interactive terminal
 php artisan migrate:refresh --seed
+# Install API routing and Sanctum
+php artisan install:api
+## These require an active connection to run
+```
+
+Additional commands to run from the **Interactive Terminal**:
+```bash
 # Run supplied tests
 php artisan test
+# Launch Vite dev server
 npm run dev
 ```
 
@@ -36,8 +46,8 @@ SELECT * FROM example.users;
 > It's critical that `artisan serve` be bound to the `host` and `port` explicitly. I've done so [here](./laravel/example-app/composer.json).
 
 URLs:
-1. localhost:8000 (once the above are completed)
-1. localhost:5137 (this is for Vite debugging, Vue is rolled up and served on `8000`)
+1. [localhost:8000](localhost:8000) (once the above are completed)
+1. [localhost:5137](localhost:5137) (this is for Vite debugging, Vue is rolled up and served on `8000`)
 
 > Create a new User to get a valid decrypted Password.
 
@@ -54,8 +64,8 @@ composer run dev
 ```
 
 1. This doesn't use NGINX as a Proxy.
-    * For a barebones example see: https://github.com/Thoughtscript/pyng_2025/tree/main/nginx
-1. SMTP has to be added and [configured](./laravel/example-app/.env).
+    * For a barebones example that does: https://github.com/Thoughtscript/pyng_2025/tree/main/nginx
+1. SMTP has to be added and [configured](./laravel/example-app/.env.bak).
     * Registering a new User won't automatically fire off an email.
 1. `artisan` is akin to `rake` or `pymanage`.
 1. This attmpts to use a Mounted Volume for hot-reloading within the Container.
@@ -67,3 +77,4 @@ composer run dev
 1. https://laravel.com/docs/13.x/configuration
 1. https://laravel.com/docs/13.x/seeding
 1. https://oneuptime.com/blog/post/2026-01-06-docker-hot-reloading/view
+1. https://oneuptime.com/blog/post/2026-01-26-laravel-rest-api/view
