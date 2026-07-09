@@ -105,7 +105,7 @@ Additional notes:
     * Registering a new User won't automatically fire off an email.
 1. `artisan` is akin to `rake` or `pymanage`.
 1. This attmpts to use a Mounted Volume for hot-reloading within the Container.
-    * Align the [WORKDIR](./laravel/dockerfile) and [volumess](./docker-compose.yml).
+    * Align the [WORKDIR](./laravel/dockerfile) and [volumes](./docker-compose.yml).
 1. Avoid N+1:
     * `$books = Book::with('author')->get();` not `$books = Book::all();`
 1. Rate Limiting
