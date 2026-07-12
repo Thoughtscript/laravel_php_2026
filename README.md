@@ -119,6 +119,9 @@ Additional notes:
     * `redis` must be installed and is done so locally here (rather than in its own Container).
     * Apparently: `protected-mode no` must be set for no passwords.
     * While: `Example::all()` should be avoided in Production (preferring: `...where()->get()`, etc.), `Example::all()->toArray();` prevents intermittant: `"__PHP_Incomplete_Class_Name":"Illuminate\\Database\\Eloquent\\Collection"` resulting from Eloquent ORM Collections, caching, and serialization issues (caching as a purer Array).
+1. If using Octane + FrankenPHP in Production, it's generally advised to use the official Image: [dunglas/frankenphp](https://hub.docker.com/r/dunglas/frankenphp).
+    * Relevant benchmarks: https://terrylinooo.github.io/laravel-octane-benchmark/
+    * Octane + FrankenPHP is also blisteringly fast as is and reduces `ms` Response latencies by over 50%!
 
 ## Resources and Links
 
@@ -134,3 +137,4 @@ Additional notes:
 1. https://oneuptime.com/blog/post/2026-01-21-redis-laravel-integration/view
 1. https://laravel.com/docs/13.x/redis
 1. https://summonshr.medium.com/the-7-levels-of-laravel-optimization-from-rookie-to-optimization-overlord-with-benchmark-49009488419b
+1. https://terrylinooo.github.io/laravel-octane-benchmark/
