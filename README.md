@@ -118,7 +118,7 @@ Additional notes:
 1. Caching through `predis`.
     * `redis` must be installed and is done so locally here (rather than in its own Container).
     * Apparently: `protected-mode no` must be set for no passwords.
-    * While: `Example::all()` should be avoided in Production (preferring: `...where()->get()`, etc.), `Example::all()->toArray();` prevents intermittant: `"__PHP_Incomplete_Class_Name":"Illuminate\\Database\\Eloquent\\Collection"` resulting from Eloquent ORM Collections, caching, and serialization issues.
+    * While: `Example::all()` should be avoided in Production (preferring: `...where()->get()`, etc.), `Example::all()->toArray();` prevents intermittant: `"__PHP_Incomplete_Class_Name":"Illuminate\\Database\\Eloquent\\Collection"` resulting from Eloquent ORM Collections, caching, and serialization issues (caching as a purer Array).
 
 ## Resources and Links
 

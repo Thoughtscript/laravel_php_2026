@@ -31,13 +31,14 @@ class ExampleController extends Controller
             // Attempt to store as Array to avoid:
             // Eloquent ORM Collection:
             // "__PHP_Incomplete_Class_Name":"Illuminate\\Database\\Eloquent\\Collection"
+            // This is a very small Collection with few Fields to filter on...
             return Example::all()->toArray();
         });
         
         return response()->json([
-            'message' => 'Example cache retreived successfully',
+            'message' => 'Example cache retrieved successfully',
             'data' => $examples,
-        ], 201);
+        ], 200);
     }
 
     // GET http://localhost:8000/api/examples
@@ -86,7 +87,7 @@ class ExampleController extends Controller
     public function destroy(Example $example): JsonResponse
     {
         Concurrency::run([
-            fn () => $example->delete(),
+            fn () => $example->delete()
         ], timeout: 15);
 
         $this->clear_cache();

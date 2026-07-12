@@ -47,7 +47,6 @@ class ExampleApiTest extends TestCase
         Cache::spy();
 
         $payload = [
-            // Replace with your actual fields
             'name' => 'Test Example',
             'note' => '123456'
         ];
@@ -77,7 +76,6 @@ class ExampleApiTest extends TestCase
         $example = Example::factory()->create();
 
         $payload = [
-            // Replace with your actual fields
             'name' => 'Updated Example',
             'note' => '123456'
         ];
@@ -148,9 +146,9 @@ class ExampleApiTest extends TestCase
         $response = $this->getJson('/api/examples/cached');
 
         $response
-            ->assertStatus(201)
+            ->assertStatus(200)
             ->assertJson([
-                'message' => 'Example cache retreived successfully',
+                'message' => 'Example cache retrieved successfully',
             ]);
 
         $this->assertTrue(Cache::has('examples:all'));
@@ -162,9 +160,9 @@ class ExampleApiTest extends TestCase
 
         $response->assertStatus(422);
 
-        // Replace with your required fields
         $response->assertJsonValidationErrors([
             'name',
+            'note'
         ]);
     }
 
@@ -176,9 +174,9 @@ class ExampleApiTest extends TestCase
 
         $response->assertStatus(422);
 
-        // Replace with your required fields
         $response->assertJsonValidationErrors([
             'name',
+            'note'
         ]);
     }
 }
