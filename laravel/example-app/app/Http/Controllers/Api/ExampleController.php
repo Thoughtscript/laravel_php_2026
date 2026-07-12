@@ -24,8 +24,14 @@ class ExampleController extends Controller
 
     public function custom_cached(Request $request): JsonResponse
     {
-        $examples =  Cache::remember('examples:all', 3600, function () { 
-            return Example::all();
+        $examples = Cache::remember('examples:all', 3600, function () { 
+            // Avoid Example::all() in production, use: where()->get();
+            // For DB cursor: ->cursor()
+
+            // Attempt to store as Array to avoid:
+            // Eloquent ORM Collection:
+            // "__PHP_Incomplete_Class_Name":"Illuminate\\Database\\Eloquent\\Collection"
+            return Example::all()->toArray();
         });
         
         return response()->json([
