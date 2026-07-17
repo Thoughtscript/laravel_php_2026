@@ -51,7 +51,7 @@ async function updateExample() {
 </script>
 
 <template>
-  <div class="card">
+  <div class="card p-[5px]">
     <span class="header mb-0.75 truncate leading-tight text-lg font-bold">Edit Example</span>
 
     <div class="container p-[15px]">
