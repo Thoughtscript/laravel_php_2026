@@ -127,7 +127,12 @@ Additional notes:
     * Public REST API but UI/UX behind Authenticated frontend Route.
     * Defining [Global Style Variables](./laravel/example-app/resources/css/app.css).
     * Some Tailwind and Layouts.
-    * `spans` vs. `h1`, `h2`
+    * Input Text PUT/PATCH.
+    * `spans` vs. `h1`, `h2`.
+    * Some basic Error Handling in the UI/UX
+1. Adding a [Reactive Store](./laravel/example-app/resources/js/stores/examples.ts)
+    * `watch`
+1. Surprisingly, Laravel Vue doesn't ship with `pinia` or any `*.spec.ts` (test) files.
 
 ## Resources and Links
 

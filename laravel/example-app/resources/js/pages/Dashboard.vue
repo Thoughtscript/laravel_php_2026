@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
-import ExampleRestApiPanel from '@/components/ExampleRestApiPanel.vue';
+import ExampleRestApiScanPanel from '@/components/ExampleRestApiScanPanel.vue';
+import ExampleRestApiPutPanel from '@/components/ExampleRestApiPutPanel.vue';
 import { dashboard } from '@/routes';
 
 defineOptions({
@@ -26,7 +27,7 @@ defineOptions({
             <div
                 class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
             >
-                <PlaceholderPattern />
+                <ExampleRestApiPutPanel />
             </div>
             <div
                 class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
@@ -42,7 +43,7 @@ defineOptions({
         <div
             class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border"
         >
-            <ExampleRestApiPanel />
+            <ExampleRestApiScanPanel />
         </div>
     </div>
 </template>

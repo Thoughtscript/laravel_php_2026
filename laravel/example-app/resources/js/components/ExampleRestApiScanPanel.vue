@@ -1,16 +1,26 @@
 <script setup lang="ts">
-import { ref, onMounted  } from 'vue';
+import { ref, onMounted, watch } from 'vue';
+import { exampleStore } from '../stores/examples'
 
 const examples = ref([])
 const loading = ref(true)
 const error = ref(null)
+
+watch(
+    () => exampleStore.updated,
+    (updated) => {
+        if (updated) {
+          loadExamples()
+        }
+    }
+)
 
 const loadExamples = async () => {
     loading.value = true
     error.value = null
 
     try {
-        const response = await fetch('http://localhost:8000/api/examples')
+        const response = await fetch('http://localhost:8000/api/examples?page=1')
 
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}`)
