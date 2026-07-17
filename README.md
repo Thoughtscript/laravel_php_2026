@@ -122,6 +122,12 @@ Additional notes:
 1. If using Octane + FrankenPHP in Production, it's generally advised to use the official Image: [dunglas/frankenphp](https://hub.docker.com/r/dunglas/frankenphp).
     * Relevant benchmarks: https://terrylinooo.github.io/laravel-octane-benchmark/
     * Octane + FrankenPHP is also blisteringly fast as is and reduces `ms` Response latencies by over 50%!
+1. Simple Vue REST API [Table rendering](./laravel/example-app/resources/js/components/ExampleRestApiPanel.vue):
+    * Container and Wrapper basics.
+    * Public REST API but UI/UX behind Authenticated frontend Route.
+    * Defining [Global Style Variables](./laravel/example-app/resources/css/app.css).
+    * Some Tailwind and Layouts.
+    * `spans` vs. `h1`, `h2`
 
 ## Resources and Links
 
