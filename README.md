@@ -132,6 +132,7 @@ Additional notes:
     * Some basic Error Handling in the UI/UX
 1. Adding a [Reactive Store](./laravel/example-app/resources/js/stores/examples.ts)
     * `watch`
+    * Fought ChatGPT (lies!) for a while on `props` and went with a Reactive Store + `v-model`.
 1. Surprisingly, Laravel Vue doesn't ship with `pinia` or any `*.spec.ts` (test) files.
 
 ## Resources and Links
