@@ -3,6 +3,9 @@
 [![](https://img.shields.io/badge/php-8.5.8-purple.svg)](https://www.php.net/)
 [![](https://img.shields.io/badge/Laravel-13.x-yellow.svg)](https://laravel.com/docs/13.x)
 [![](https://img.shields.io/badge/Vue-3.5.13-green.svg)](https://vuejs.org/)
+[![](https://img.shields.io/badge/W3Schools-Certified&nbsp;Pro&nbsp;PHP-lavender.svg)](https://verify.w3schools.com/1R8Z0H8K4J)
+
+*Exploration, refresh, and practice/prep for interviews/certifications.*
 
 ## Setup and Use
 
