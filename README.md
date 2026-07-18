@@ -4,6 +4,7 @@
 [![](https://img.shields.io/badge/Laravel-13.x-yellow.svg)](https://laravel.com/docs/13.x)
 [![](https://img.shields.io/badge/Vue-3.5.13-green.svg)](https://vuejs.org/)
 [![](https://img.shields.io/badge/W3Schools-Certified&nbsp;Pro&nbsp;PHP-lavender.svg)](https://verify.w3schools.com/1R8Z0H8K4J)
+[![](https://img.shields.io/badge/W3Schools-Certified&nbsp;Pro&nbsp;Vue-lavender.svg)](https://verify.w3schools.com/1R92AXUICJ)
 
 *Exploration, refresh, and practice/prep for interviews/certifications.*
 
