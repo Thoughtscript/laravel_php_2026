@@ -154,3 +154,4 @@ Additional notes:
 1. https://laravel.com/docs/13.x/redis
 1. https://summonshr.medium.com/the-7-levels-of-laravel-optimization-from-rookie-to-optimization-overlord-with-benchmark-49009488419b
 1. https://terrylinooo.github.io/laravel-octane-benchmark/
+1. https://laravel.com/docs/13.x/sanctum#introduction
